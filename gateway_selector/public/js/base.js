@@ -5,8 +5,6 @@ frappe.gateway_selector.AddressFormProvider = Class.extend({
 	init: function($form) {
 		this.data = {};
 		this.$form = $form;
-
-		console.log("address form initialized")
 	},
 
 	form: function() {
@@ -196,16 +194,12 @@ frappe.integration_service.gateway_selector_gateway = Class.extend({
   process: function(overrides, callback) {
     if ( this.current_gateway ) {
       let processCall = () => {
-        console.log("--------- processCall --------------");
         this.current_gateway.collect();
         this.current_gateway.process(overrides, callback);
       };
 
       // fuggly way of updating gateway proxy record with gateway selection.
       // we first update the record, wait, then do the actual processing.
-      console.log("------------------------------------------------")
-      console.log(this.request_data);
-      console.log(this.request_data.proxy_name);
       if ( this.request_data.proxy_name ) {
         frappe.call({
           method: "gateway_selector.gateway_selector.doctype.gateway_selector_settings.gateway_selector_settings.update_proxy_gateway",
