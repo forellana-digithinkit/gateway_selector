@@ -33,7 +33,7 @@ class GatewaySelectorProxy(Document):
 
 		# This may be a quotation, sales order or sales invoice
 		order_doc = frappe.get_doc(
-			reference_doc.reference_doctype, 
+			reference_doc.reference_doctype,
 			reference_doc.get("reference_docname", reference_doc.get("reference_name"))
 		)
 
